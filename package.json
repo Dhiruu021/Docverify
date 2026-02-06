@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "jspdf": "^4.1.0",
+    "jspdf-autotable": "^5.0.7",
+    "nodemailer": "^7.0.13",
+    "recharts": "^3.7.0"
+  }
+}
