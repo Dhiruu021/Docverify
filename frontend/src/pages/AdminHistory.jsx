@@ -85,7 +85,7 @@ function AdminHistory() {
 
               <div className="card-actions">
                 <a
-                  href={`http://localhost:5000/${d.filePath}`}
+                  href={d.cloudinaryUrl || d.filePath}
                   target="_blank"
                   rel="noreferrer"
                   className="link-view"
