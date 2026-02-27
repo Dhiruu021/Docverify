@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import AdminStatsChart from "../components/AdminStatsChart";
-
 import "./AdminMainDashboard.css";
 
 function AdminMainDashboard() {
@@ -14,13 +13,11 @@ function AdminMainDashboard() {
   const [aiMode, setAiMode] = useState(false);
   const [loadingAI, setLoadingAI] = useState(false);
 
-  // ADS STATE
   const [ads, setAds] = useState([]);
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [image, setImage] = useState(null);
 
-  /* ================= LOAD STATS ================= */
   useEffect(() => {
     const loadStats = async () => {
       try {
@@ -33,7 +30,6 @@ function AdminMainDashboard() {
     loadStats();
   }, []);
 
-  /* ================= LOAD AI SETTINGS ================= */
   useEffect(() => {
     const loadSettings = async () => {
       try {
@@ -46,7 +42,6 @@ function AdminMainDashboard() {
     loadSettings();
   }, []);
 
-  /* ================= LOAD ADS ================= */
   useEffect(() => {
     const loadAds = async () => {
       try {
@@ -59,7 +54,6 @@ function AdminMainDashboard() {
     loadAds();
   }, []);
 
-  /* ================= ADD AD ================= */
   const addAd = async (e) => {
     e.preventDefault();
 
@@ -82,7 +76,6 @@ function AdminMainDashboard() {
     }
   };
 
-  /* ================= TOGGLE AD ================= */
   const toggleAd = async (id) => {
     try {
       await API.put(`/ads/toggle/${id}`);
@@ -93,7 +86,6 @@ function AdminMainDashboard() {
     }
   };
 
-  /* ================= DELETE AD ================= */
   const deleteAd = async (id) => {
     if (!window.confirm("Delete this ad?")) return;
     try {
@@ -104,7 +96,6 @@ function AdminMainDashboard() {
     }
   };
 
-  /* ================= TOGGLE AI ================= */
   const toggleAI = async () => {
     try {
       setLoadingAI(true);
@@ -120,91 +111,140 @@ function AdminMainDashboard() {
   };
 
   return (
-    <div className="page-center">
+    <div className="admin-dashboard">
       <div className="dashboard-container">
-        <h2>Dashboard</h2>
+        <header className="dashboard-header">
+          <div className="header-content">
+            <h1>Admin Dashboard</h1>
+            <p>Manage system settings and monitor activities</p>
+          </div>
+          <div className="ai-control">
+            <div className="ai-status-badge">
+              <span className="ai-dot"></span>
+              <span className="ai-text">AI {aiMode ? "Active" : "Inactive"}</span>
+            </div>
+            <button
+              className={`btn-ai-toggle ${aiMode ? "active" : ""}`}
+              onClick={toggleAI}
+              disabled={loadingAI}
+            >
+              {loadingAI ? (
+                <span className="spinner-small"></span>
+              ) : aiMode ? (
+                <>
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  Disable AI
+                </>
+              ) : (
+                <>
+                  <svg viewBox="0 0 24 24"><path d="M13 7h-2v4L8.5 9.5 7 11l4.5 4.5L9 17h2v-4l2.5 1.5L15 13l-4.5-4.5L13 7z"/></svg>
+                  Enable AI
+                </>
+              )}
+            </button>
+          </div>
+        </header>
 
-        {/* ================= AI TOGGLE ================= */}
-        <div className="ai-toggle" style={{ marginBottom: "20px" }}>
-          <span>
-            AI Verification :
-            <b style={{ marginLeft: "8px", color: aiMode ? "green" : "red" }}>
-              {aiMode ? "ON" : "OFF"}
-            </b>
-          </span>
-
-          <button
-            onClick={toggleAI}
-            disabled={loadingAI}
-            style={{ marginLeft: "15px" }}
-          >
-            {loadingAI
-              ? "Updating..."
-              : aiMode
-              ? "Disable AI"
-              : "Enable AI"}
-          </button>
+        <div className="stats-overview">
+          <div className="stat-card">
+            <div className="stat-icon pending">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <div className="stat-details">
+              <span className="stat-value">{stats.pending}</span>
+              <span className="stat-label">Pending</span>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon approved">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div className="stat-details">
+              <span className="stat-value">{stats.approved}</span>
+              <span className="stat-label">Approved</span>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon rejected">
+              <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </div>
+            <div className="stat-details">
+              <span className="stat-value">{stats.rejected}</span>
+              <span className="stat-label">Rejected</span>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon total">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            </div>
+            <div className="stat-details">
+              <span className="stat-value">{stats.pending + stats.approved + stats.rejected}</span>
+              <span className="stat-label">Total</span>
+            </div>
+          </div>
         </div>
 
-        {/* ================= STATS CHART ================= */}
-        <div style={{ marginBottom: "40px" }}>
+        <div className="card chart-card">
           <AdminStatsChart stats={stats} />
         </div>
 
-        {/* ================= MANAGE ADS ================= */}
-        <div className="ads-wrapper">
+        <div className="card ads-section">
           <h3>Manage Ads</h3>
 
-          {/* Add Ad Form */}
-          <form onSubmit={addAd} style={{ marginBottom: "20px" }}>
+          <form onSubmit={addAd} className="ads-form">
             <input
+              type="text"
               placeholder="Ad Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              style={{ display: "block", marginBottom: "10px", width: "100%" }}
             />
-
             <input
+              type="text"
               placeholder="Ad Link (optional)"
               value={link}
               onChange={(e) => setLink(e.target.value)}
-              style={{ display: "block", marginBottom: "10px", width: "100%" }}
             />
-
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
-              style={{ marginBottom: "10px" }}
             />
-
-            <button type="submit">➕ Add Ad</button>
+            <button type="submit" className="btn btn-primary">
+              Add Ad
+            </button>
           </form>
 
-          {ads.length === 0 && <p>No ads available</p>}
+          {ads.length === 0 && (
+            <p className="empty-text">No ads available</p>
+          )}
 
           <div className="ads-grid">
             {ads.map((ad) => (
               <div key={ad._id} className="ad-card">
-                <b>{ad.title}</b>
-                <p>Status: {ad.active ? "ACTIVE" : "INACTIVE"}</p>
-
+                <h4>{ad.title}</h4>
+                <div className="ad-status">
+                  <span className="status-label">Status:</span>
+                  <span className={ad.active ? "badge badge-on" : "badge badge-off"}>
+                    {ad.active ? "Active" : "Inactive"}
+                  </span>
+                </div>
                 {ad.image && (
                   <img
                     src={`http://localhost:5000/${ad.image}`}
-                    alt="ad"
+                    alt={ad.title}
                   />
                 )}
-
-                <div style={{ marginTop: "10px" }}>
-                  <button onClick={() => toggleAd(ad._id)}>
+                <div className="ad-actions">
+                  <button
+                    className="btn btn-success"
+                    onClick={() => toggleAd(ad._id)}
+                  >
                     {ad.active ? "Disable" : "Enable"}
                   </button>
-
                   <button
+                    className="btn btn-danger"
                     onClick={() => deleteAd(ad._id)}
-                    style={{ marginLeft: "10px", color: "red" }}
                   >
                     Delete
                   </button>
@@ -217,5 +257,4 @@ function AdminMainDashboard() {
     </div>
   );
 }
-
 export default AdminMainDashboard;

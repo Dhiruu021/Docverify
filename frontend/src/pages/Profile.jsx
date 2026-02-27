@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
-import BackButton from "../components/BackButton";
 import "./Profile.css";
 
 function Profile() {
   const [user, setUser] = useState(null);
   const [file, setFile] = useState(null);
-
-  // Change Password States
   const [showChange, setShowChange] = useState(false);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -29,10 +26,13 @@ function Profile() {
 
     await API.put("/profile/image", form);
     alert("Profile updated");
+    setFile(null);
     loadProfile();
+    
+    // Notify navbar to update profile image
+    window.dispatchEvent(new Event("profileUpdated"));
   };
 
-  // Change Password Function
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
@@ -40,7 +40,7 @@ function Profile() {
         oldPassword,
         newPassword,
       });
-      alert("Password changed successfully ✅");
+      alert("Password changed successfully");
       setOldPassword("");
       setNewPassword("");
       setShowChange(false);
@@ -50,63 +50,66 @@ function Profile() {
   };
 
   return (
-    <div className="profile-wrapper">
-      <BackButton />
-
+    <div className="profile-page">
       {!user ? (
         <p className="loading">Loading...</p>
       ) : (
-        <div className="profile-container">
-          <h2>My Profile</h2>
+        <div className="profile-card">
+          <h1>My Profile</h1>
 
-          {user.profileImage && (
-            <img
-              src={`http://localhost:5000/${user.profileImage}`}
-              className="profile-img"
-              alt="Profile"
-            />
-          )}
+          <div className="profile-avatar">
+            {user.profileImage ? (
+              <img
+                src={`http://localhost:5000/${user.profileImage}`}
+                alt="Profile"
+              />
+            ) : (
+              <div className="avatar-placeholder">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+            )}
+          </div>
 
-          <p><b>Name:</b> {user.name}</p>
-          <p><b>Email:</b> {user.email}</p>
-          <p><b>Role:</b> {user.role}</p>
+          <div className="profile-info">
+            <div className="info-row">
+              <span className="info-label">Name</span>
+              <span className="info-value">{user.name}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Email</span>
+              <span className="info-value">{user.email}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Role</span>
+              <span className="info-value role-badge">{user.role}</span>
+            </div>
+          </div>
 
-          <div className="upload-row">
-            {/* hidden file input */}
+          <div className="profile-upload">
             <input
               type="file"
               id="fileUpload"
               hidden
               onChange={(e) => setFile(e.target.files[0])}
             />
-
-            {/* custom file box */}
-            <label htmlFor="fileUpload" className="file-box">
-              {file ? file.name : "Choose file"}
+            <label htmlFor="fileUpload" className="file-label">
+              {file ? file.name : "Choose Profile Image"}
             </label>
-
-            <button onClick={uploadImage} className="upload-btn">
+            <button onClick={uploadImage} className="btn-upload" disabled={!file}>
               Upload
             </button>
           </div>
 
-
-
-          {/* CHANGE PASSWORD BUTTON */}
-          {!showChange && (
+          {!showChange ? (
             <button
-              className="change-pass-btn"
+              className="btn-change-password"
               onClick={() => setShowChange(true)}
             >
-              🔐 Change Password
+              Change Password
             </button>
-          )}
-
-          {/* CHANGE PASSWORD FORM */}
-          {showChange && (
-            <>
-              <h3 style={{ marginTop: "25px" }}>Change Password</h3>
-
+          ) : (
+            <div className="password-section">
+              <h3>Change Password</h3>
               <form onSubmit={handleChangePassword} className="password-form">
                 <input
                   type="password"
@@ -115,7 +118,6 @@ function Profile() {
                   onChange={(e) => setOldPassword(e.target.value)}
                   required
                 />
-
                 <input
                   type="password"
                   placeholder="New Password"
@@ -123,19 +125,18 @@ function Profile() {
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
                 />
-
-                <div className="pass-btns">
-                  <button type="submit">Save</button>
+                <div className="form-actions">
+                  <button type="submit" className="btn-save">Save</button>
                   <button
                     type="button"
                     onClick={() => setShowChange(false)}
-                    className="cancel-btn"
+                    className="btn-cancel"
                   >
                     Cancel
                   </button>
                 </div>
               </form>
-            </>
+            </div>
           )}
         </div>
       )}

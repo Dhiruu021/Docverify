@@ -10,7 +10,7 @@ const {
 
 const documentController = require("../controllers/documentController");
 
-/* ================= USER ================= */
+/*  USER */
 
 // Upload document (USER)
 router.post(
@@ -27,7 +27,7 @@ router.get(
   documentController.getMyDocuments
 );
 
-/* ================= VERIFIER ADMIN ================= */
+/*VERIFIER ADMIN */
 
 // Pending documents
 router.get(
@@ -53,7 +53,7 @@ router.get(
   documentController.getHistoryDocuments
 );
 
-/* ================= SUPER ADMIN ================= */
+/*  SUPER ADMIN */
 
 // Delete single
 router.delete(

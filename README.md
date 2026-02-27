@@ -1,2 +1,0 @@
-# Docverify
-Verify all documents

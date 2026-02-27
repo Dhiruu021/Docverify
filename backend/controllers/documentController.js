@@ -47,7 +47,7 @@ const uploadDocument = async (req, res) => {
   }
 };
 
-/*  User - Get My Documents*/
+/*  User My Documents*/
 const getMyDocuments = async (req, res) => {
   try {
     const docs = await Document.find({ userId: req.params.userId });
@@ -57,7 +57,7 @@ const getMyDocuments = async (req, res) => {
   }
 };
 
-/*  Admin - Get All Documents*/
+/*  Admin All Documents*/
 const getAllDocuments = async (req, res) => {
   try {
     const docs = await Document.find().populate("userId", "name email");
@@ -67,7 +67,7 @@ const getAllDocuments = async (req, res) => {
   }
 };
 
-/* Admin - Get Pending Documents*/
+/* Admin Pending Documents*/
 const getPendingDocuments = async (req, res) => {
   try {
     const docs = await Document.find({ status: "pending" }).populate(
@@ -80,7 +80,7 @@ const getPendingDocuments = async (req, res) => {
   }
 };
 
-/* Admin - Update Document Status + EMAIL ONLY*/
+/* Admin Update Document Status + EMAIL ONLY*/
 const updateStatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -110,12 +110,12 @@ Verification Team`
         );
       }
     } catch (emailErr) {
-      console.error("EMAIL FAILED 👉", emailErr.message);
+      console.error("EMAIL FAILED ", emailErr.message);
     }
 
     res.json({ message: "Status Updated Successfully", doc });
   } catch (error) {
-    console.error("UPDATE STATUS ERROR 👉", error);
+    console.error("UPDATE STATUS ERROR ", error);
     res.status(500).json({ error: error.message });
   }
 };

@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
-import BackButton from "../components/BackButton";
 import "./Upload.css";
 
 function Upload() {
   const [docType, setDocType] = useState("");
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setUploading(true);
 
     const formData = new FormData();
     formData.append("docType", docType);
@@ -23,30 +24,42 @@ function Upload() {
       navigate("/status");
     } catch (err) {
       alert("Upload Failed");
+    } finally {
+      setUploading(false);
     }
   };
 
   return (
-    <div className="page-center">
-      <BackButton />   {/* Added here */}
+    <div className="upload-page">
+      <div className="upload-container">
+        <h1>Upload Document</h1>
+        <p className="subtitle">Upload your documents for verification</p>
 
-      <div className="upload-box">
-        <h2>Upload Document</h2>
+        <form onSubmit={handleSubmit} className="upload-form">
+          <div className="form-group">
+            <label>Document Type</label>
+            <input
+              type="text"
+              placeholder="e.g., Aadhaar, PAN, Passport"
+              value={docType}
+              onChange={(e) => setDocType(e.target.value)}
+              required
+            />
+          </div>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Document Type (Aadhaar, PAN, etc)"
-            onChange={(e) => setDocType(e.target.value)}
-            required
-          />
+          <div className="form-group">
+            <label>Select File</label>
+            <input
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+              required
+            />
+            {file && <span className="file-name">{file.name}</span>}
+          </div>
 
-          <input
-            type="file"
-            onChange={(e) => setFile(e.target.files[0])}
-            required
-          />
-
-          <button type="submit">Upload</button>
+          <button type="submit" disabled={uploading} className="btn-upload">
+            {uploading ? "Uploading..." : "Upload Document"}
+          </button>
         </form>
       </div>
     </div>

@@ -1,91 +1,392 @@
-/* ================= ADS SECTION ================= */
-
-.ads-wrapper {
-  margin-top: 50px;
-  padding: 30px;
-  background: linear-gradient(135deg, #eef2ff, #f8fafc);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+.user-dashboard {
+  min-height: calc(100vh - 64px);
+  padding: 2rem;
+  background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+  background-attachment: fixed;
 }
 
-.ads-wrapper h3 {
-  margin-bottom: 24px;
-  font-size: 26px;
+.dark .user-dashboard {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.welcome-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.dark .welcome-section h1 {
+  color: #f1f5f9;
+}
+
+.welcome-section p {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+.dark .welcome-section p {
+  color: #94a3b8;
+}
+
+/* Stats Chart Section */
+.stats-chart-section {
+  margin-bottom: 2rem;
+}
+
+.chart-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.dark .chart-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.chart-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.dark .chart-card h2 {
+  color: #f1f5f9;
+}
+
+.chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.chart-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.chart-percent {
+  font-size: 0.8rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.chart-bar-bg {
+  height: 12px;
+  background: #f3f4f6;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.chart-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.chart-bar-fill.pending {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.chart-bar-fill.approved {
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+.chart-bar-fill.rejected {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.chart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.total-number {
+  font-size: 1.25rem;
   font-weight: 700;
   color: #1e293b;
 }
 
-/* ================= ADS GRID ================= */
+.chart-legend {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot.pending {
+  background: #f59e0b;
+}
+
+.legend-dot.approved {
+  background: #22c55e;
+}
+
+.legend-dot.rejected {
+  background: #ef4444;
+}
+
+/* Quick Actions */
+.quick-actions {
+  margin-bottom: 2rem;
+}
+
+.quick-actions h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.action-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.action-card.blue:hover {
+  background: linear-gradient(135deg, #eff6ff, #ffffff);
+}
+
+.action-card.green:hover {
+  background: linear-gradient(135deg, #f0fdf4, #ffffff);
+}
+
+.action-card.purple:hover {
+  background: linear-gradient(135deg, #faf5ff, #ffffff);
+}
+
+.action-card.orange .action-icon {
+  background: #ffedd5;
+}
+
+.action-card.orange:hover {
+  background: linear-gradient(135deg, #fff7ed, #ffffff);
+}
+
+.action-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.action-card.blue .action-icon {
+  background: #dbeafe;
+}
+
+.action-card.green .action-icon {
+  background: #bbf7d0;
+}
+
+.action-card.purple .action-icon {
+  background: #e9d5ff;
+}
+
+.action-content {
+  flex: 1;
+}
+
+.action-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.action-content p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.action-arrow {
+  width: 24px;
+  height: 24px;
+  fill: #9ca3af;
+  transition: all 0.2s ease;
+}
+
+.action-card:hover .action-arrow {
+  fill: #3b82f6;
+  transform: translateX(4px);
+}
+
+/* Ads Section */
+.ads-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
 
 .ads-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 26px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
-/* ================= AD CARD ================= */
-
 .ad-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 16px;
-  text-align: center;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: all 0.2s ease;
 }
 
 .ad-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* ================= AD IMAGE ================= */
-
-.ad-card img {
+.ad-image {
   width: 100%;
-  height: 170px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.ad-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
 
-/* ================= AD TEXT ================= */
+.ad-card:hover .ad-image img {
+  transform: scale(1.05);
+}
 
-.ad-card p,
-.ad-card h4 {
-  margin-top: 14px;
-  font-size: 17px;
+.ad-content {
+  padding: 1.25rem;
+}
+
+.ad-content h3 {
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #1e293b;
+  margin-bottom: 1rem;
 }
 
-/* ================= AD BUTTON ================= */
-
-.ad-card a {
+.btn-visit {
   display: inline-block;
-  margin-top: 12px;
-  padding: 8px 18px;
-  border-radius: 10px;
-  background: #4f46e5;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 14px;
+  padding: 0.625rem 1.25rem;
+  background: #3b82f6;
+  color: white;
   text-decoration: none;
-  transition: background 0.25s ease, transform 0.25s ease;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-.ad-card a:hover {
-  background: #4338ca;
-  transform: translateY(-2px);
+.btn-visit:hover {
+  background: #2563eb;
 }
 
-/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 768px) {
-  .ads-wrapper {
-    padding: 20px;
+  .user-dashboard {
+    padding: 1rem;
   }
 
-  .ad-card img {
-    height: 150px;
+  .welcome-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .chart-card {
+    padding: 1.5rem;
+  }
+
+  .chart-legend {
+    font-size: 0.85rem;
+  }
+
+  .ads-grid {
+    grid-template-columns: 1fr;
   }
 }

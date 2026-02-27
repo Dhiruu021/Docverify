@@ -1,23 +1,28 @@
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 // AUTH
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 
 // USER
 import UserDashboard from "./pages/UserDashboard";
 import Upload from "./pages/Upload";
 import MyStatus from "./pages/MyStatus";
 import Profile from "./pages/Profile";
+import LeaveRequest from "./pages/LeaveRequest";
+import Notices from "./pages/Notices";
+import Messages from "./pages/Messages";
 
 // ADMIN / VERIFIER
 import AdminMainDashboard from "./pages/AdminMainDashboard";
-import AdminPending from "./pages/AdminPending";
+import AdminVerifier from "./pages/AdminVerifier";
 import AdminHistory from "./pages/AdminHistory";
+import UserManagement from "./pages/UserManagement";
+import AdminLeaveManagement from "./pages/AdminLeaveManagement";
 
-// 🔥 HELP PAGE
+// HELP PAGE
 import Help from "./pages/Help";
 
 // ROUTE GUARD
@@ -28,7 +33,7 @@ function AppWrapper() {
   const location = useLocation();
   const loggedIn = isLoggedIn();
 
-  /* 🚫 Disable browser back button AFTER login */
+  /* Disable browser back button AFTER login */
   useEffect(() => {
     if (loggedIn) {
       window.history.pushState(null, "", window.location.href);
@@ -45,19 +50,19 @@ function AppWrapper() {
     }
   }, [loggedIn]);
 
+  const hideLayout = location.pathname === "/";
+
   return (
     <>
-      {/* ✅ Navbar only after login & not on auth pages */}
-      {loggedIn &&
-        location.pathname !== "/" &&
-        location.pathname !== "/register" && <Navbar />}
+      {/* Navbar */}
+      {loggedIn && !hideLayout && <Navbar />}
 
+      {/* ROUTES */}
       <Routes>
-        {/* ================= PUBLIC ================= */}
+        {/* PUBLIC */}
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
 
-        {/* ================= USER ================= */}
+        {/* USER */}
         <Route
           path="/dashboard"
           element={
@@ -88,28 +93,65 @@ function AppWrapper() {
         <Route
           path="/profile"
           element={
-            <ProtectedRoute allowedRoles={["user", "verifieradmin", "superadmin"]}>
+            <ProtectedRoute
+              allowedRoles={["user", "verifieradmin", "superadmin"]}
+            >
               <Profile />
             </ProtectedRoute>
           }
         />
 
-        {/* ================= HELP (ALL LOGGED-IN ROLES) ================= */}
+        <Route
+          path="/leaves"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <LeaveRequest />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* NOTICES */}
+        <Route
+          path="/notices"
+          element={
+            <ProtectedRoute
+              allowedRoles={["user", "verifieradmin", "superadmin"]}
+            >
+              <Notices />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* MESSAGES */}
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute
+              allowedRoles={["user", "verifieradmin", "superadmin"]}
+            >
+              <Messages />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* HELP */}
         <Route
           path="/help"
           element={
-            <ProtectedRoute allowedRoles={["user", "verifieradmin", "superadmin"]}>
+            <ProtectedRoute
+              allowedRoles={["user", "verifieradmin", "superadmin"]}
+            >
               <Help />
             </ProtectedRoute>
           }
         />
 
-        {/* ================= VERIFIER + SUPER ADMIN ================= */}
+        {/* VERIFIER + SUPERADMIN */}
         <Route
           path="/admin/pending"
           element={
             <ProtectedRoute allowedRoles={["verifieradmin", "superadmin"]}>
-              <AdminPending />
+              <AdminVerifier />
             </ProtectedRoute>
           }
         />
@@ -123,7 +165,16 @@ function AppWrapper() {
           }
         />
 
-        {/* ================= SUPER ADMIN ONLY ================= */}
+        <Route
+          path="/admin/leaves"
+          element={
+            <ProtectedRoute allowedRoles={["verifieradmin", "superadmin"]}>
+              <AdminLeaveManagement />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* SUPER ADMIN ONLY */}
         <Route
           path="/admin"
           element={
@@ -132,13 +183,24 @@ function AppWrapper() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute allowedRoles={["superadmin"]}>
+              <UserManagement />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* ================= FALLBACK (VERY IMPORTANT) ================= */}
+        {/* FALLBACK */}
         <Route
           path="*"
           element={<Navigate to={loggedIn ? "/dashboard" : "/"} replace />}
         />
       </Routes>
+
+      {/* Footer */}
+      {loggedIn && !hideLayout && <Footer />}
     </>
   );
 }

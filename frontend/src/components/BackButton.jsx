@@ -4,8 +4,8 @@ function BackButton() {
   const navigate = useNavigate();
 
   return (
-    <button onClick={() => navigate(-1)} style={styles.btn}>
-      ⬅ Back
+    <button style={styles.btn} onClick={() => navigate(-1)}>
+      ← Back
     </button>
   );
 }
@@ -22,6 +22,9 @@ const styles = {
     color: "white",
     cursor: "pointer",
     zIndex: 1000,
+    btnHover: {
+      background: "#243f6c",
+    },
   },
 };
 

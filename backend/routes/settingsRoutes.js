@@ -4,13 +4,13 @@ const router = express.Router();
 const auth = require("../middleware/authMiddleware");
 const settingsController = require("../controllers/settingsController");
 
-// 🔍 DEBUG (temporary – dekhne ke liye)
+// DEBUG (temporary – dekhne ke liye)
 console.log("protect:", typeof auth.protect);
 console.log("isSuperAdmin:", typeof auth.isSuperAdmin);
 console.log("getSettings:", typeof settingsController.getSettings);
 console.log("updateSettings:", typeof settingsController.updateSettings);
 
-// ✅ Get settings (Super Admin)
+// Get settings (Super Admin)
 router.get(
   "/",
   auth.protect,
@@ -18,7 +18,7 @@ router.get(
   settingsController.getSettings
 );
 
-// ✅ Update settings (Super Admin)
+// Update settings (Super Admin)
 router.put(
   "/",
   auth.protect,

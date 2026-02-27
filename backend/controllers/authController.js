@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// ================= REGISTER =================
+// REGISTER 
 
 exports.register = async (req, res) => {
   console.log("REGISTER BODY 👉", req.body);
@@ -30,14 +30,14 @@ exports.register = async (req, res) => {
 
     res.status(201).json({ message: "Registered Successfully" });
   } catch (error) {
-    console.error("REGISTER ERROR 👉", error);
+    console.error("REGISTER ERROR ", error);
     res.status(500).json({ message: "Server error" });
   }
 };
 
-// ================= LOGIN =================
+// LOGIN 
 exports.login = async (req, res) => {
-  console.log("LOGIN BODY 👉", req.body); // 🔍 DEBUG LOG
+  console.log("LOGIN BODY:", req.body); // DEBUG LOG
 
   try {
     const { email, password } = req.body;
@@ -58,7 +58,7 @@ exports.login = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    // 🔥 IMPORTANT RESPONSE (frontend ke hisaab se)
+    // IMPORTANT RESPONSE (frontend ke hisaab se)
     res.json({
       token,
       role: user.role,
@@ -66,12 +66,12 @@ exports.login = async (req, res) => {
       name: user.name,
     });
   } catch (error) {
-    console.error("LOGIN ERROR 👉", error);
+    console.error("LOGIN ERROR ", error);
     res.status(500).json({ message: "Server error" });
   }
 };
 
-// ================= CHANGE PASSWORD =================
+//CHANGE PASSWORD
 exports.changePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
@@ -88,7 +88,7 @@ exports.changePassword = async (req, res) => {
 
     res.json({ message: "Password updated successfully" });
   } catch (error) {
-    console.error("CHANGE PASSWORD ERROR 👉", error);
+    console.error("CHANGE PASSWORD ERROR ", error);
     res.status(500).json({ message: "Server error" });
   }
 };

@@ -1,124 +1,243 @@
-.profile-wrapper {
-  width: 99vw;
-  min-height: calc(100vh - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.profile-page {
+  min-height: calc(100vh - 64px);
+  padding: 2rem;
+  background: linear-gradient(180deg, #fdf4ff 0%, #fae8ff 50%, #f5d0fe 100%);
+  background-attachment: fixed;
 }
 
-.profile-container {
-  background: #f5f7fb;
-  padding: 30px 40px;
-  border-radius: 12px;
+.dark .profile-page {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.loading {
+  font-size: 1.25rem;
+  color: #6b7280;
+}
+
+.profile-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fdf4ff 50%, #fae8ff 100%);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   text-align: center;
-  width: 320px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.profile-img {
+.profile-card h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 15px auto;
-  border: 3px solid #4f46e5;
+  border: 4px solid #e5e7eb;
 }
 
-.profile-container button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  border: none;
-  background: #4f46e5;
+.avatar-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #3b82f6;
   color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.loading {
-  font-size: 18px;
-}
-
-/* 🔐 Password Form */
-.password-form input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-}
-
-.password-form button {
-  width: 100%;
-  padding: 8px;
-  background: #1f2933;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.change-pass-btn {
-  margin-top: 20px;
-  padding: 8px 12px;
-  background: #1f2933;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.pass-btns {
-  display: flex;
-  gap: 10px;
-}
-
-.cancel-btn {
-  background: gray;
-}
-
-.save-btn {
-  background: #4f46e5;
-}
-
-/*  Upload Section */
-.upload-row {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-top: 10px;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.profile-info {
+  margin-bottom: 1.5rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.info-value {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.role-badge {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.profile-upload {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
   justify-content: center;
 }
 
-.upload-row input[type="file"] {
-  font-size: 14px;
-}
-
-.upload-btn {
-  margin-right: 10px;
-  padding: 6px 10px;
-  background: #4f46e5;
-  color: white;
-  border: none;
-  border-radius: 6px;
+.file-label {
+  padding: 0.625rem 1rem;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 10px;
-  transition: 0.2s ease;
-}
-
-.upload-btn:hover {
-  background: #4338ca;
-}
-
-.file-box {
-  padding: 6px 10px;
-  border: 1px dashed #4f46e5;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 10px;
-  color: #4f46e5;
-  background: #f5f6ff;
-  transition: 0.2s ease;
-  min-width: 120px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  background: #f9fafb;
+  transition: all 0.2s ease;
+  flex: 1;
   text-align: center;
 }
 
-.file-box:hover {
-  background: #e8eaff;
+.file-label:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.btn-upload {
+  padding: 0.625rem 1.25rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-upload:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.btn-upload:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-change-password {
+  width: 100%;
+  padding: 0.75rem;
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-change-password:hover {
+  background: #e5e7eb;
+}
+
+.password-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.password-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.password-form input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.password-form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn-save,
+.btn-cancel {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-save {
+  background: #22c55e;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #16a34a;
+}
+
+.btn-cancel {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.btn-cancel:hover {
+  background: #e5e7eb;
+}
+
+@media (max-width: 640px) {
+  .profile-page {
+    padding: 1rem;
+  }
+
+  .profile-card {
+    padding: 1.5rem;
+  }
+
+  .profile-upload {
+    flex-direction: column;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
 }

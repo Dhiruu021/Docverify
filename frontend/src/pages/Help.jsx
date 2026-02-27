@@ -45,6 +45,7 @@ function Help() {
 
         <div style={{ ...styles.section, textAlign: "center" }}>
           <h3>📞 Contact Support</h3>
+          <p>📱 +91 7800330409</p>
           <p>📧 support@docverify.com</p>
           <p>🕘 10 AM – 6 PM</p>
         </div>
@@ -68,16 +69,15 @@ const styles = {
     margin: 0,
     },
 
-  /* 👇 SAME AS .profile-wrapper */
+  
   wrapper: {
     width: "100vw",
-    minHeight: "calc(100vh - 60px)", // navbar height
+    minHeight: "calc(100vh - 60px)", 
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
 
-  /* 👇 SAME AS .profile-container */
   container: {
     background: "#f5f7fb",
     padding: "30px 40px",

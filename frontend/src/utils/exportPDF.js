@@ -17,17 +17,16 @@ const exportPDF = (title, data) => {
         : "-",
     ]);
 
-    // ✅ CORRECT WAY (VITE SAFE)
     autoTable(doc, {
       head: [["#", "Document", "Status", "Date"]],
       body: tableBody,
       startY: 25,
     });
 
-    // ✅ GUARANTEED DOWNLOAD
+    // DOWNLOAD
     doc.save(`${title}.pdf`);
   } catch (err) {
-    console.error("PDF GENERATION ERROR 👉", err);
+    console.error("PDF GENERATION ERROR", err);
     alert("PDF generation failed");
   }
 };

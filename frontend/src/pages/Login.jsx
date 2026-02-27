@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "./Login.css";
 
@@ -7,11 +7,13 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await API.post("/auth/login", {
@@ -19,66 +21,102 @@ function Login() {
         password,
       });
 
-      // 🔥 SAVE AUTH DATA
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("userId", res.data.userId);
+      localStorage.setItem("name", res.data.name);
 
-   // 🔥 ROLE BASED REDIRECT (FIXED)
-   if (res.data.role === "superadmin") {
-   navigate("/admin");
-   } else if (res.data.role === "verifieradmin") {
-   navigate("/admin/pending"); 
-   } else {
-   navigate("/dashboard");
-   }
-
-
+      if (res.data.role === "superadmin") {
+        navigate("/admin");
+      } else if (res.data.role === "verifieradmin") {
+        navigate("/admin/pending");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (err) {
       alert(err.response?.data?.message || "Invalid Credentials");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h2>Login</h2>
-
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          {/* Password with emoji toggle */}
-          <div className="password-wrapper">
-            <input
-              type={showPass ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-
-            <span
-              className="eye-icon"
-              style={{ cursor: "pointer" }}
-              onClick={() => setShowPass(!showPass)}
-            >
-              {showPass ? "👁️" : "🙈"}
-            </span>
+    <div className="auth-page">
+      <div className="auth-wrapper">
+        <div className="auth-hero">
+          <div className="hero-content">
+            <h1>DocVerify</h1>
+            <p>Secure & Smart Document Verification System powered by AI technology</p>
+            <div className="hero-features">
+              <div className="feature">
+                <span className="feature-icon">✓</span>
+                <span>AI-Powered Verification</span>
+              </div>
+              <div className="feature">
+                <span className="feature-icon">✓</span>
+                <span>Secure Document Storage</span>
+              </div>
+              <div className="feature">
+                <span className="feature-icon">✓</span>
+                <span>Instant Status Updates</span>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <button type="submit">Login</button>
-        </form>
+        <div className="auth-form-container">
+          <div className="auth-card">
+            <div className="auth-header">
+              <h2>Welcome Back</h2>
+              <p>Sign in to your account to continue</p>
+            </div>
 
-        <p>
-          Don't have an account?{" "}
-          <Link to="/register">Create new account</Link>
-        </p>
+            <form onSubmit={handleSubmit} className="auth-form">
+              <div className="form-group">
+                <label>📧 Email Address</label>
+                <input
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>🔒 Password</label>
+                <div className="input-wrapper">
+                  <input
+                    type={showPass ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="toggle-password"
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? "Hide" : "Show"}
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" className="btn-primary" disabled={loading}>
+                {loading ? (
+                  <span className="spinner"></span>
+                ) : (
+                  "Sign In"
+                )}
+              </button>
+            </form>
+
+            <div className="auth-footer">
+              <p>Contact your administrator for account access</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

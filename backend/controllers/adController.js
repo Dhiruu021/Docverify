@@ -13,7 +13,7 @@ exports.createAd = async (req, res) => {
   res.json(ad);
 };
 
-// Get Active Ads (User)
+// Active Ads (User)
 exports.getActiveAds = async (req, res) => {
   const ads = await Ad.find({ active: true });
   res.json(ads);

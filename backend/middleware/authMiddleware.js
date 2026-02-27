@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-/* ================= AUTH CHECK ================= */
+/*  AUTH CHECK */
 const protect = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
@@ -20,20 +20,19 @@ const protect = async (req, res, next) => {
       return res.status(401).json({ message: "User not found" });
     }
 
-    req.user = user; // 🔥 important
+    req.user = user; //important
     next();
   } catch (error) {
-    console.error("AUTH ERROR 👉", error.message);
+    console.error("AUTH ERROR ", error.message);
     return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
 
-/* ================= VERIFIER + ADMIN ================= */
-// /*
+/*  VERIFIER + ADMIN */
 // Roles allowed:
 // - verifieradmin
 // - superadmin
-// */
+
 const isVerifierAdmin = (req, res, next) => {
   if (
     req.user &&
@@ -48,7 +47,7 @@ const isVerifierAdmin = (req, res, next) => {
   });
 };
 
-/* ================= SUPER ADMIN ONLY ================= */
+/*  SUPER ADMIN ONLY*/
 const isSuperAdmin = (req, res, next) => {
   if (req.user && req.user.role === "superadmin") {
     return next();

@@ -10,6 +10,9 @@ const documentRoutes = require("./routes/documentRoutes");
 const profileRoutes = require("./routes/profileRoutes");   
 const settingsRoutes = require("./routes/settingsRoutes");
 const adRoutes = require("./routes/adRoutes");
+const leaveRoutes = require("./routes/leaveRoutes");
+const noticeRoutes = require("./routes/noticeRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 
 const app = express();
 
@@ -27,16 +30,19 @@ app.use("/api/docs", documentRoutes);
 app.use("/api/profile", profileRoutes);  
 app.use("/api/settings", settingsRoutes); 
 app.use("/api/ads", adRoutes);
+app.use("/api/leaves", leaveRoutes);
+app.use("/api/notices", noticeRoutes);
+app.use("/api/messages", messageRoutes);
 
 // DB connect
 connectDB();
 
 // test route
 app.get("/", (req, res) => {
-  res.send("Document Verification Backend Running ✅");
+  res.send("Document Verification Backend Running ");
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(` Server running on port ${PORT}`);
 });
