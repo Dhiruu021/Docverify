@@ -231,7 +231,7 @@ function AdminMainDashboard() {
                 </div>
                 {ad.image && (
                   <img
-                    src={`${process.env.REACT_APP_API_URL}/${ad.image}`}
+                    src={ad.image.startsWith("http") ? ad.image : `${import.meta.env.VITE_API_URL?.replace("/api", "")}/${ad.image}`}
                     alt={ad.title}
                   />
                 )}
