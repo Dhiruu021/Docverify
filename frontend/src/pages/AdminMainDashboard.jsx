@@ -231,7 +231,7 @@ function AdminMainDashboard() {
                 </div>
                 {ad.image && (
                   <img
-                    src={`${ad.image}`}
+                    src={`${process.env.REACT_APP_API_URL}/${ad.image}`}
                     alt={ad.title}
                   />
                 )}
