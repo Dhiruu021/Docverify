@@ -282,12 +282,13 @@
 
 .ads-form input[type="text"] {
   flex: 1;
-  min-width: 200px;
+  min-width: 0;
   padding: 0.625rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 0.95rem;
   transition: border-color 0.2s ease;
+  box-sizing: border-box;
 }
 
 .ads-form input[type="text"]:focus {
@@ -412,13 +413,23 @@
 
   .ads-form {
     flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .ads-form input[type="text"] {
     width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .ads-form input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .ads-form .btn {
     width: 100%;
+    box-sizing: border-box;
   }
 }
