@@ -11,7 +11,7 @@ import UserDashboard from "./pages/UserDashboard";
 import Upload from "./pages/Upload";
 import MyStatus from "./pages/MyStatus";
 import Profile from "./pages/Profile";
-import LeaveRequest from "./pages/LeaveRequest";
+
 import Notices from "./pages/Notices";
 import Messages from "./pages/Messages";
 
@@ -20,7 +20,7 @@ import AdminMainDashboard from "./pages/AdminMainDashboard";
 import AdminVerifier from "./pages/AdminVerifier";
 import AdminHistory from "./pages/AdminHistory";
 import UserManagement from "./pages/UserManagement";
-import AdminLeaveManagement from "./pages/AdminLeaveManagement";
+
 
 // HELP PAGE
 import Help from "./pages/Help";
@@ -101,15 +101,6 @@ function AppWrapper() {
           }
         />
 
-        <Route
-          path="/leaves"
-          element={
-            <ProtectedRoute allowedRoles={["user"]}>
-              <LeaveRequest />
-            </ProtectedRoute>
-          }
-        />
-
         {/* NOTICES */}
         <Route
           path="/notices"
@@ -161,15 +152,6 @@ function AppWrapper() {
           element={
             <ProtectedRoute allowedRoles={["verifieradmin", "superadmin"]}>
               <AdminHistory />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/admin/leaves"
-          element={
-            <ProtectedRoute allowedRoles={["verifieradmin", "superadmin"]}>
-              <AdminLeaveManagement />
             </ProtectedRoute>
           }
         />

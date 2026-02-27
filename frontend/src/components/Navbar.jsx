@@ -62,20 +62,17 @@ function Navbar() {
           { path: "/dashboard", label: "Dashboard" },
           { path: "/upload", label: "Upload" },
           { path: "/status", label: "My Status" },
-          { path: "/leaves", label: "Leaves" },
         ];
       case "verifieradmin":
         return [
           { path: "/admin/pending", label: "Verify" },
           { path: "/admin/history", label: "History" },
-          { path: "/admin/leaves", label: "Leaves" },
         ];
       case "superadmin":
         return [
           { path: "/admin", label: "Dashboard" },
           { path: "/admin/pending", label: "Verify" },
           { path: "/admin/history", label: "History" },
-          { path: "/admin/leaves", label: "Leaves" },
           { path: "/admin/users", label: "Users" },
         ];
       default:

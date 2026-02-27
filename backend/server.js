@@ -10,7 +10,7 @@ const documentRoutes = require("./routes/documentRoutes");
 const profileRoutes = require("./routes/profileRoutes");   
 const settingsRoutes = require("./routes/settingsRoutes");
 const adRoutes = require("./routes/adRoutes");
-const leaveRoutes = require("./routes/leaveRoutes");
+
 const noticeRoutes = require("./routes/noticeRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 
@@ -30,7 +30,7 @@ app.use("/api/docs", documentRoutes);
 app.use("/api/profile", profileRoutes);  
 app.use("/api/settings", settingsRoutes); 
 app.use("/api/ads", adRoutes);
-app.use("/api/leaves", leaveRoutes);
+
 app.use("/api/notices", noticeRoutes);
 app.use("/api/messages", messageRoutes);
 

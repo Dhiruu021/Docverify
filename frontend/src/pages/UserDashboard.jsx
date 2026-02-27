@@ -55,13 +55,7 @@ function UserDashboard() {
       action: () => navigate("/status"),
       color: "green",
     },
-    {
-      icon: "🏖️",
-      title: "Apply Leave",
-      desc: "Request time off from work",
-      action: () => navigate("/leaves"),
-      color: "orange",
-    },
+
     {
       icon: "👤",
       title: "Profile",
