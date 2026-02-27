@@ -29,7 +29,4 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: document-verification-api
-          type: web
-          property: url
+        value: https://document-verification-api.onrender.com/api
