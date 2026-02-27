@@ -18,6 +18,10 @@ const documentSchema = new mongoose.Schema(
       required: true,
     },
 
+    cloudinaryUrl: {
+      type: String,
+    },
+
     status: {
       type: String,
       enum: ["pending", "approved", "rejected"],

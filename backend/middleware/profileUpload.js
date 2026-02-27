@@ -1,15 +1,6 @@
 const multer = require("multer");
-const path = require("path");
+const { profileStorage } = require("../config/cloudinary");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/profiles");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const uploadProfile = multer({ storage });
+const uploadProfile = multer({ storage: profileStorage });
 
 module.exports = uploadProfile;

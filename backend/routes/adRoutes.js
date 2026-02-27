@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../middleware/upload");
+const multer = require("multer");
+const { adStorage } = require("../config/cloudinary");
 const { protect, isSuperAdmin } = require("../middleware/authMiddleware");
+
+const uploadAd = multer({ storage: adStorage });
 const {
   createAd,
   getActiveAds,
@@ -10,7 +13,7 @@ const {
 } = require("../controllers/adController");
 
 router.get("/", protect, getActiveAds);
-router.post("/", protect, isSuperAdmin, upload.single("image"), createAd);
+router.post("/", protect, isSuperAdmin, uploadAd.single("image"), createAd);
 router.put("/toggle/:id", protect, isSuperAdmin, toggleAd);
 router.delete("/:id", protect, isSuperAdmin, deleteAd);
 

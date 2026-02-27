@@ -35,6 +35,7 @@ const uploadDocument = async (req, res) => {
       userId,
       docType,
       filePath: req.file.path,
+      cloudinaryUrl: req.file.path,
       status,
     });
 
