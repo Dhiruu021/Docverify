@@ -124,7 +124,7 @@ function Navbar() {
                 >
                   <div className="user-avatar-circle">
                     {profileImage ? (
-                      <img src={`http://localhost:5000/${profileImage}`} alt="Profile" className="avatar-img" />
+                      <img src={`${profileImage}`} alt="Profile" className="avatar-img" />
                     ) : (
                       role?.charAt(0).toUpperCase()
                     )}
