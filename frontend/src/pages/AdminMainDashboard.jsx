@@ -231,7 +231,7 @@ function AdminMainDashboard() {
                 </div>
                 {ad.image && (
                   <img
-                    src={`http://localhost:5000/${ad.image}`}
+                    src={`${ad.image}`}
                     alt={ad.title}
                   />
                 )}
