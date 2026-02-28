@@ -68,6 +68,7 @@ function Login() {
           <div className="auth-card">
             <div className="auth-header">
               <h2>Welcome Back</h2>
+              <span className="mobile-brand">DocVerify</span>
               <p>Sign in to your account to continue</p>
             </div>
 
