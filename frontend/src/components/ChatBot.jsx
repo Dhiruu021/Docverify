@@ -1,0 +1,146 @@
+import { useState, useRef, useEffect } from "react";
+import "./ChatBot.css";
+
+const FAQS = [
+  {
+    question: "How to upload document?",
+    answer: "Go to Dashboard → Click 'Upload Document' → Select document type → Choose file → Submit."
+  },
+  {
+    question: "How to check status?",
+    answer: "Click 'My Status' in navigation or dashboard to see all your documents and their verification status."
+  },
+  {
+    question: "What documents are accepted?",
+    answer: "Aadhaar, PAN, Passport, Driving License, and other ID documents. Supported formats: JPG, PNG, PDF."
+  },
+  {
+    question: "How long does verification take?",
+    answer: "Usually 24-48 hours. You'll see status updates in 'My Status' page."
+  },
+  {
+    question: "What if document is rejected?",
+    answer: "Check the rejection reason, fix the issue, and upload a new clear document."
+  },
+  {
+    question: "How to contact admin?",
+    answer: "Use the 'Messages' feature from the dropdown menu to chat with admin directly."
+  },
+  {
+    question: "Forgot password?",
+    answer: "Contact admin through Messages or email support for password reset."
+  },
+  {
+    question: "How to update profile?",
+    answer: "Click your avatar → Profile → Edit your details and save."
+  }
+];
+
+function ChatBot() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { type: "bot", text: "Hi! I'm DocBot. How can I help you today?" }
+  ]);
+  const [input, setInput] = useState("");
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const findAnswer = (question) => {
+    const lowerQ = question.toLowerCase();
+    const match = FAQS.find(faq => 
+      faq.question.toLowerCase().includes(lowerQ) ||
+      lowerQ.includes(faq.question.toLowerCase().split(" ")[0])
+    );
+    return match?.answer || "I don't have an answer for that. Try asking about: upload, status, documents, verification, or contact admin.";
+  };
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const userMsg = input.trim();
+    setMessages(prev => [...prev, { type: "user", text: userMsg }]);
+    setInput("");
+
+    setTimeout(() => {
+      const answer = findAnswer(userMsg);
+      setMessages(prev => [...prev, { type: "bot", text: answer }]);
+    }, 500);
+  };
+
+  const handleQuickQuestion = (question) => {
+    setMessages(prev => [...prev, { type: "user", text: question }]);
+    setTimeout(() => {
+      const faq = FAQS.find(f => f.question === question);
+      setMessages(prev => [...prev, { type: "bot", text: faq?.answer || findAnswer(question) }]);
+    }, 500);
+  };
+
+  return (
+    <div className="chatbot-container">
+      {!isOpen && (
+        <button className="chatbot-toggle" onClick={() => setIsOpen(true)}>
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+          <span>Help</span>
+        </button>
+      )}
+
+      {isOpen && (
+        <div className="chatbot-window">
+          <div className="chatbot-header">
+            <div className="chatbot-title">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <span>DocBot</span>
+            </div>
+            <button className="chatbot-close" onClick={() => setIsOpen(false)}>
+              <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+          </div>
+
+          <div className="chatbot-messages">
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`message ${msg.type}`}>
+                {msg.type === "bot" && (
+                  <div className="bot-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  </div>
+                )}
+                <div className="message-bubble">{msg.text}</div>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+
+          <div className="chatbot-quick">
+            {FAQS.slice(0, 4).map((faq, idx) => (
+              <button key={idx} onClick={() => handleQuickQuestion(faq.question)}>
+                {faq.question}
+              </button>
+            ))}
+          </div>
+
+          <form className="chatbot-input" onSubmit={handleSend}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your question..."
+            />
+            <button type="submit">
+              <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </form>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default ChatBot;

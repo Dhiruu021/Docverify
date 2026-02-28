@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ChatBot from "./components/ChatBot";
 
 // AUTH
 import Login from "./pages/Login";
@@ -183,6 +184,9 @@ function AppWrapper() {
 
       {/* Footer */}
       {loggedIn && !hideLayout && <Footer />}
+
+      {/* ChatBot */}
+      {loggedIn && <ChatBot />}
     </>
   );
 }
