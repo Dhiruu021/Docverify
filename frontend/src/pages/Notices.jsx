@@ -222,7 +222,7 @@ function Notices() {
                 <h3 className="notice-title">{notice.title}</h3>
                 <p className="notice-content">{notice.content}</p>
                 <div className="notice-footer">
-                  <span className="notice-author">Posted by: {notice.postedByName}</span>
+                  <span className="notice-author">Posted by: {notice.postedByName} {notice.postedByRole && `(${notice.postedByRole})`}</span>
                   {isAdmin && (
                     <div className="notice-actions">
                       <button className="btn-edit" onClick={() => handleEdit(notice)}>

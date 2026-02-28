@@ -23,6 +23,10 @@ const noticeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  postedByRole: {
+    type: String,
+    required: true,
+  },
   targetAudience: {
     type: String,
     enum: ["all", "students", "teachers", "admins"],

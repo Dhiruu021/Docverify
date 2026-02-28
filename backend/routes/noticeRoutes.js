@@ -40,6 +40,7 @@ router.post("/", protect, isVerifierAdmin, async (req, res) => {
       targetAudience,
       postedBy: req.user.id,
       postedByName: req.user.name,
+      postedByRole: req.user.role,
     });
 
     res.status(201).json(notice);
