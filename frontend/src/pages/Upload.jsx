@@ -71,7 +71,7 @@ function Upload() {
           <li><strong>Quality:</strong> Clear, readable scan or photo</li>
           <li><strong>Documents:</strong> Aadhaar, PAN, Passport, Driving License, Voter ID</li>
           <li><strong>Photo Tips:</strong> Good lighting, all corners visible, no blur</li>
-          <li><strong>Verification Time:</strong> 24-48 hours</li>
+          <li><strong>Verification Time:</strong> 24-48 hours (excluding weekends/holidays)</li>
           <li><strong>Status:</strong> Check "My Status" page for updates</li>
         </ul>
       </div>
