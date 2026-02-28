@@ -280,40 +280,39 @@
 .chatbot-floating-quick {
   position: absolute;
   bottom: 80px;
-  right: 16px;
+  left: 16px;
   z-index: 20;
 }
 
 .floating-quick-btn {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   border: 2px solid white;
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5), 0 0 0 4px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5), 0 0 0 4px rgba(59, 130, 246, 0.2);
   transition: all 0.3s ease;
 }
 
 .floating-quick-btn:hover {
   transform: scale(1.15);
-  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.7), 0 0 0 6px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.7), 0 0 0 6px rgba(59, 130, 246, 0.3);
 }
 
 .floating-quick-btn svg {
-  width: 24px;
-  height: 24px;
-  stroke: white;
+  width: 26px;
+  height: 26px;
 }
 
 .floating-quick-menu {
   position: absolute;
   bottom: 55px;
-  right: 0;
+  left: 0;
   width: 220px;
   background: white;
   border-radius: 12px;
