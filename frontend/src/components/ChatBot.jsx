@@ -1,6 +1,25 @@
 import { useState, useRef, useEffect } from "react";
 import "./ChatBot.css";
 
+const CONTACT_NUMBER = "7800330409";
+const OFFICE_HOURS = { start: 9, end: 18 }; // 9AM - 6PM
+
+const isOfficeTime = () => {
+  const now = new Date();
+  const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+  const hour = now.getHours();
+  
+  // Monday (1) to Saturday (6), 9AM to 6PM
+  return day >= 1 && day <= 6 && hour >= OFFICE_HOURS.start && hour < OFFICE_HOURS.end;
+};
+
+const getContactMessage = () => {
+  if (isOfficeTime()) {
+    return `For urgent assistance, call us at: ${CONTACT_NUMBER}`;
+  }
+  return "Our office hours are Mon-Sat, 9AM-6PM. Please leave a message or call during office hours.";
+};
+
 const FAQS = [
   {
     question: "How to upload document?",
@@ -36,7 +55,7 @@ const FAQS = [
   },
   {
     question: "Need urgent help?",
-    answer: "For urgent assistance, call us at: 7800330409 (Mon-Sat, 9AM-6PM)"
+    answer: getContactMessage()
   }
 ];
 
@@ -130,6 +149,14 @@ function ChatBot() {
                 {faq.question}
               </button>
             ))}
+          </div>
+
+          <div className="chatbot-contact-status">
+            {isOfficeTime() ? (
+              <span className="status-online">● Office Open - Call {CONTACT_NUMBER}</span>
+            ) : (
+              <span className="status-offline">○ Office Closed - Mon-Sat 9AM-6PM</span>
+            )}
           </div>
 
           <form className="chatbot-input" onSubmit={handleSend}>
