@@ -272,14 +272,7 @@
   text-decoration: underline;
 }
 
-.password-label-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.forgot-link-inline {
+.forgot-link-below {
   background: none;
   border: none;
   color: #3b82f6;
@@ -288,9 +281,13 @@
   cursor: pointer;
   transition: color 0.2s ease;
   padding: 0;
+  margin-top: 0.5rem;
+  text-align: right;
+  display: block;
+  width: 100%;
 }
 
-.forgot-link-inline:hover {
+.forgot-link-below:hover {
   color: #2563eb;
   text-decoration: underline;
 }

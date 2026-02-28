@@ -105,15 +105,7 @@ function Login() {
               </div>
 
               <div className="form-group">
-                <div className="password-label-row">
-                  <label>🔒 Password</label>
-                  <button 
-                    className="forgot-link-inline" 
-                    onClick={() => setShowForgot(!showForgot)}
-                  >
-                    Forgot?
-                  </button>
-                </div>
+                <label>🔒 Password</label>
                 <div className="input-wrapper">
                   <input
                     type={showPass ? "text" : "password"}
@@ -130,6 +122,12 @@ function Login() {
                     {showPass ? "Hide" : "Show"}
                   </button>
                 </div>
+                <button 
+                  className="forgot-link-below" 
+                  onClick={() => setShowForgot(!showForgot)}
+                >
+                  Forgot Password?
+                </button>
               </div>
 
               <button type="submit" className="btn-primary btn-glass" disabled={loading}>
