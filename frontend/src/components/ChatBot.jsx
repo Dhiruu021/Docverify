@@ -65,6 +65,8 @@ function ChatBot() {
     { type: "bot", text: "Hi! I'm DocBot. How can I help you today?" }
   ]);
   const [input, setInput] = useState("");
+  const [lastQuickQuestion, setLastQuickQuestion] = useState(null);
+  const [showQuickDropdown, setShowQuickDropdown] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -99,6 +101,8 @@ function ChatBot() {
   };
 
   const handleQuickQuestion = (question) => {
+    setLastQuickQuestion(question);
+    setShowQuickDropdown(false);
     setMessages(prev => [...prev, { type: "user", text: question }]);
     setTimeout(() => {
       const faq = FAQS.find(f => f.question === question);
@@ -143,17 +147,6 @@ function ChatBot() {
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="chatbot-quick">
-            {FAQS.slice(0, 4).map((faq, idx) => (
-              <button key={idx} onClick={() => handleQuickQuestion(faq.question)}>
-                {faq.question}
-              </button>
-            ))}
-            <button className="call-help-btn" onClick={() => handleQuickQuestion("Need urgent help?")}>
-              📞 Call for Help
-            </button>
-          </div>
-
           <form className="chatbot-input" onSubmit={handleSend}>
             <input
               type="text"
@@ -165,6 +158,29 @@ function ChatBot() {
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
           </form>
+
+          {isOpen && (
+            <div className="chatbot-floating-quick">
+              <button 
+                className="floating-quick-btn"
+                onClick={() => setShowQuickDropdown(!showQuickDropdown)}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                </svg>
+              </button>
+              
+              {showQuickDropdown && (
+                <div className="floating-quick-menu">
+                  {FAQS.map((faq, idx) => (
+                    <button key={idx} onClick={() => handleQuickQuestion(faq.question)}>
+                      {faq.question}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
