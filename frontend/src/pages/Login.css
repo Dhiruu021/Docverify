@@ -278,14 +278,25 @@
 @media (max-width: 640px) {
   .auth-form-container {
     padding: 1rem;
+    background: linear-gradient(135deg, #065f46 0%, #059669 35%, #10b981 50%, #d1fae5 65%, #ecfdf5 100%);
   }
 
   .auth-card {
     padding: 2rem;
     border-radius: 16px;
+    background: linear-gradient(145deg, rgba(6, 95, 70, 0.15) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(236, 253, 245, 0.95) 100%);
+    box-shadow: 0 25px 80px rgba(6, 95, 70, 0.3), 0 0 0 1px rgba(255,255,255,0.3) inset;
   }
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
   }
 }
