@@ -4,9 +4,10 @@
   background: linear-gradient(180deg, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
   background-attachment: fixed;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   padding-top: 4rem;
+  gap: 1.5rem;
 }
 
 .dark .upload-page {
@@ -105,7 +106,6 @@
 .upload-guidelines-box {
   width: 100%;
   max-width: 450px;
-  margin-top: 1.5rem;
   padding: 1.5rem;
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   border-radius: 12px;
