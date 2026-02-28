@@ -29,7 +29,6 @@
 .chatbot-toggle svg {
   width: 20px;
   height: 20px;
-  fill: currentColor;
 }
 
 .chatbot-window {
@@ -61,9 +60,8 @@
 }
 
 .chatbot-title svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
+  width: 22px;
+  height: 22px;
 }
 
 .chatbot-close {
@@ -86,7 +84,6 @@
 .chatbot-close svg {
   width: 18px;
   height: 18px;
-  fill: white;
 }
 
 .chatbot-messages {
@@ -122,7 +119,6 @@
 .bot-avatar svg {
   width: 18px;
   height: 18px;
-  fill: white;
 }
 
 .message-bubble {
@@ -214,7 +210,6 @@
 .chatbot-input button svg {
   width: 20px;
   height: 20px;
-  fill: white;
 }
 
 /* Dark mode */
