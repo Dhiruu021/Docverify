@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 35%, #3b82f6 50%, #e2e8f0 65%, #f8fafc 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
 }
 
 .auth-hero {
@@ -85,14 +85,14 @@
 }
 
 .auth-card {
-  background: linear-gradient(145deg, rgba(30, 58, 138, 0.15) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(241, 245, 249, 0.95) 100%);
+  background: rgba(255, 255, 255, 0.95);
   padding: 2.5rem;
   border-radius: 24px;
-  box-shadow: 0 25px 80px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(255,255,255,0.3) inset;
+  box-shadow: 0 25px 80px rgba(102, 126, 234, 0.3), 0 0 0 1px rgba(255,255,255,0.5) inset;
   width: 100%;
   max-width: 420px;
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .auth-header {
@@ -202,7 +202,7 @@
 .btn-primary {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -219,7 +219,7 @@
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
 }
 
 .btn-primary:disabled {
@@ -264,7 +264,6 @@
 @media (max-width: 968px) {
   .auth-wrapper {
     grid-template-columns: 1fr;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
 
   .auth-hero {
@@ -273,11 +272,6 @@
 
   .auth-form-container {
     padding: 2rem;
-  }
-
-  .auth-card {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   }
 }
 
