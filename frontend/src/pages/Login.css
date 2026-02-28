@@ -261,6 +261,43 @@
   text-decoration: underline;
 }
 
+.forgot-password-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.forgot-link {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.forgot-form {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.forgot-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f0f9ff;
+  border-radius: 8px;
+  color: #0369a1;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 @media (max-width: 968px) {
   .auth-wrapper {
     grid-template-columns: 1fr;

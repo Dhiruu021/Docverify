@@ -8,6 +8,10 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showForgot, setShowForgot] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotMessage, setForgotMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -37,6 +41,22 @@ function Login() {
       alert(err.response?.data?.message || "Invalid Credentials");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleForgotSubmit = async (e) => {
+    e.preventDefault();
+    setForgotLoading(true);
+    setForgotMessage("");
+
+    try {
+      const res = await API.post("/auth/forgot-password", { email: forgotEmail });
+      setForgotMessage(res.data.message);
+      setForgotEmail("");
+    } catch (err) {
+      setForgotMessage(err.response?.data?.message || "Something went wrong");
+    } finally {
+      setForgotLoading(false);
     }
   };
 
@@ -115,6 +135,34 @@ function Login() {
 
             <div className="auth-footer">
               <p>Contact your administrator for account access</p>
+            </div>
+
+            <div className="forgot-password-section">
+              <button 
+                className="forgot-link" 
+                onClick={() => setShowForgot(!showForgot)}
+              >
+                {showForgot ? "← Back to Login" : "Forgot Password?"}
+              </button>
+
+              {showForgot && (
+                <form onSubmit={handleForgotSubmit} className="forgot-form">
+                  <div className="form-group">
+                    <label>📧 Enter your email</label>
+                    <input
+                      type="email"
+                      placeholder="name@example.com"
+                      value={forgotEmail}
+                      onChange={(e) => setForgotEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="btn-primary" disabled={forgotLoading}>
+                    {forgotLoading ? "Sending..." : "Send Reset Link"}
+                  </button>
+                  {forgotMessage && <p className="forgot-message">{forgotMessage}</p>}
+                </form>
+              )}
             </div>
           </div>
         </div>
