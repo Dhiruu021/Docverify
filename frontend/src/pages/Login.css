@@ -347,14 +347,14 @@
 @media (max-width: 640px) {
   .auth-form-container {
     padding: 1rem;
-    background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 35%, #a78bfa 50%, #ede9fe 65%, #f5f3ff 100%);
+    background: linear-gradient(135deg, #9a3412 0%, #ea580c 35%, #fb923c 50%, #fed7aa 65%, #fff7ed 100%);
   }
 
   .auth-card {
     padding: 2rem;
     border-radius: 16px;
-    background: linear-gradient(145deg, rgba(76, 29, 149, 0.15) 0%, rgba(124, 58, 237, 0.1) 50%, rgba(245, 243, 255, 0.95) 100%);
-    box-shadow: 0 25px 80px rgba(76, 29, 149, 0.3), 0 0 0 1px rgba(255,255,255,0.3) inset;
+    background: linear-gradient(145deg, rgba(154, 52, 18, 0.15) 0%, rgba(234, 88, 12, 0.1) 50%, rgba(255, 247, 237, 0.95) 100%);
+    box-shadow: 0 25px 80px rgba(154, 52, 18, 0.3), 0 0 0 1px rgba(255,255,255,0.3) inset;
   }
 
   .form-row {
@@ -362,18 +362,18 @@
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
   }
 
   .btn-primary:hover:not(:disabled) {
-    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 10px 30px rgba(234, 88, 12, 0.4);
   }
 
   .mobile-brand {
     display: block;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #4c1d95;
+    color: #9a3412;
     margin: 0.5rem 0;
     text-align: center;
   }
