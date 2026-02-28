@@ -157,7 +157,7 @@ function UserDashboard() {
                 <article key={ad._id} className="ad-card">
                   <div className="ad-image">
                     <img
-                      src={`http://localhost:5000/${ad.image}`}
+                      src={ad.image.startsWith("http") ? ad.image : `${import.meta.env.VITE_API_URL?.replace("/api", "")}/${ad.image}`}
                       alt={ad.title}
                     />
                   </div>
