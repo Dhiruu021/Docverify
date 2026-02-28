@@ -8,11 +8,13 @@ const uploadAd = multer({ storage: adStorage });
 const {
   createAd,
   getActiveAds,
+  getAllAds,
   toggleAd,
   deleteAd,
 } = require("../controllers/adController");
 
 router.get("/", protect, getActiveAds);
+router.get("/all", protect, isSuperAdmin, getAllAds);
 router.post("/", protect, isSuperAdmin, uploadAd.single("image"), createAd);
 router.put("/toggle/:id", protect, isSuperAdmin, toggleAd);
 router.delete("/:id", protect, isSuperAdmin, deleteAd);

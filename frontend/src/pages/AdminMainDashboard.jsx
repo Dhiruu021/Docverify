@@ -45,7 +45,7 @@ function AdminMainDashboard() {
   useEffect(() => {
     const loadAds = async () => {
       try {
-        const res = await API.get("/ads");
+        const res = await API.get("/ads/all");
         setAds(res.data);
       } catch (err) {
         console.error("Ads load failed", err);
@@ -67,7 +67,7 @@ function AdminMainDashboard() {
       setTitle("");
       setLink("");
       setImage(null);
-      const res = await API.get("/ads");
+      const res = await API.get("/ads/all");
       setAds(res.data);
       alert("Ad added successfully");
     } catch (err) {
@@ -79,7 +79,7 @@ function AdminMainDashboard() {
   const toggleAd = async (id) => {
     try {
       await API.put(`/ads/toggle/${id}`);
-      const res = await API.get("/ads");
+      const res = await API.get("/ads/all");
       setAds(res.data);
     } catch (err) {
       console.error("Toggle ad failed", err);
