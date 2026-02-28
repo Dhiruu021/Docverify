@@ -170,6 +170,18 @@
   border-color: #3b82f6;
 }
 
+.chatbot-quick .call-help-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  border-color: #22c55e;
+  font-weight: 600;
+}
+
+.chatbot-quick .call-help-btn:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border-color: #16a34a;
+}
+
 .chatbot-input {
   display: flex;
   gap: 10px;

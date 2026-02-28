@@ -149,6 +149,9 @@ function ChatBot() {
                 {faq.question}
               </button>
             ))}
+            <button className="call-help-btn" onClick={() => handleQuickQuestion("Need urgent help?")}>
+              📞 Call for Help
+            </button>
           </div>
 
           <form className="chatbot-input" onSubmit={handleSend}>
