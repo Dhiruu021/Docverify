@@ -33,6 +33,10 @@ const FAQS = [
   {
     question: "How to update profile?",
     answer: "Click your avatar → Profile → Edit your details and save."
+  },
+  {
+    question: "Need urgent help?",
+    answer: "For urgent assistance, call us at: 7800330409 (Mon-Sat, 9AM-6PM)"
   }
 ];
 
