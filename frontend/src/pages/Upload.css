@@ -105,8 +105,8 @@
 
 .upload-guidelines-box {
   width: 100%;
-  max-width: 600px;
-  padding: 1rem 1.5rem;
+  max-width: 800px;
+  padding: 1rem 2rem;
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   border-radius: 12px;
   border: 1px solid rgba(59, 130, 246, 0.2);
