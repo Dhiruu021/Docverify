@@ -166,8 +166,8 @@ function ChatBot() {
                 onClick={() => setShowQuickDropdown(!showQuickDropdown)}
                 title="Quick Help"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '28px', height: '28px' }}>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                <svg viewBox="0 0 48 48" fill="currentColor" style={{ width: '32px', height: '32px' }}>
+                  <path d="M24 4C12.96 4 4 12.96 4 24s8.96 20 20 20 20-8.96 20-20S35.04 4 24 4zm2 30h-4v-4h4v4zm0-8h-4V14h4v12z"/>
                 </svg>
               </button>
               
