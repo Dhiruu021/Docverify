@@ -105,7 +105,15 @@ function Login() {
               </div>
 
               <div className="form-group">
-                <label>🔒 Password</label>
+                <div className="password-label-row">
+                  <label>🔒 Password</label>
+                  <button 
+                    className="forgot-link-inline" 
+                    onClick={() => setShowForgot(!showForgot)}
+                  >
+                    Forgot?
+                  </button>
+                </div>
                 <div className="input-wrapper">
                   <input
                     type={showPass ? "text" : "password"}
@@ -124,7 +132,7 @@ function Login() {
                 </div>
               </div>
 
-              <button type="submit" className="btn-primary" disabled={loading}>
+              <button type="submit" className="btn-primary btn-glass" disabled={loading}>
                 {loading ? (
                   <span className="spinner"></span>
                 ) : (
@@ -137,15 +145,15 @@ function Login() {
               <p>Contact your administrator for account access</p>
             </div>
 
-            <div className="forgot-password-section">
-              <button 
-                className="forgot-link" 
-                onClick={() => setShowForgot(!showForgot)}
-              >
-                {showForgot ? "← Back to Login" : "Forgot Password?"}
-              </button>
+            {showForgot && (
+              <div className="forgot-password-section">
+                <button 
+                  className="forgot-link" 
+                  onClick={() => setShowForgot(false)}
+                >
+                  ← Back to Login
+                </button>
 
-              {showForgot && (
                 <form onSubmit={handleForgotSubmit} className="forgot-form">
                   <div className="form-group">
                     <label>📧 Enter your email</label>
@@ -157,13 +165,13 @@ function Login() {
                       required
                     />
                   </div>
-                  <button type="submit" className="btn-primary" disabled={forgotLoading}>
+                  <button type="submit" className="btn-primary btn-glass" disabled={forgotLoading}>
                     {forgotLoading ? "Sending..." : "Send Reset Link"}
                   </button>
                   {forgotMessage && <p className="forgot-message">{forgotMessage}</p>}
                 </form>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
