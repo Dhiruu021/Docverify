@@ -1,7 +1,5 @@
 const Document = require("../models/Document");
 const Settings = require("../models/Settings");
-const sendEmail = require("../utils/sendEmail");
-const User = require("../models/User");
 
 /* Demo AI Auto Verification Logic*/
 const autoVerifyByAI = (docType, filePath) => {
@@ -81,7 +79,7 @@ const getPendingDocuments = async (req, res) => {
   }
 };
 
-/* Admin Update Document Status + EMAIL ONLY*/
+/* Admin Update Document Status */
 const updateStatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -91,28 +89,8 @@ const updateStatus = async (req, res) => {
       return res.status(404).json({ message: "Document not found" });
     }
 
-    // Update status
     doc.status = status;
     await doc.save();
-
-    // SAFE EMAIL BLOCK
-    try {
-      const user = await User.findById(doc.userId);
-      if (user?.email) {
-        await sendEmail(
-          user.email,
-          "Document Verification Update",
-          `Hello ${user.name},
-
-Your document (${doc.docType}) has been ${status.toUpperCase()}.
-
-Thank you,
-Verification Team`
-        );
-      }
-    } catch (emailErr) {
-      console.error("EMAIL FAILED ", emailErr.message);
-    }
 
     res.json({ message: "Status Updated Successfully", doc });
   } catch (error) {
