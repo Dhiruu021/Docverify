@@ -285,8 +285,8 @@
 }
 
 .floating-quick-btn {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   border: 2px solid white;
@@ -305,8 +305,8 @@
 }
 
 .floating-quick-btn svg {
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
 }
 
 .floating-quick-menu {
