@@ -264,6 +264,7 @@
 @media (max-width: 968px) {
   .auth-wrapper {
     grid-template-columns: 1fr;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
 
   .auth-hero {
@@ -272,6 +273,11 @@
 
   .auth-form-container {
     padding: 2rem;
+  }
+
+  .auth-card {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   }
 }
 
