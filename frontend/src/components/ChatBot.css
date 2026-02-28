@@ -285,28 +285,29 @@
 }
 
 .floating-quick-btn {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border: none;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: 2px solid white;
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5), 0 0 0 4px rgba(59, 130, 246, 0.1);
   transition: all 0.3s ease;
 }
 
 .floating-quick-btn:hover {
-  transform: scale(1.1) rotate(10deg);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+  transform: scale(1.15);
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.7), 0 0 0 6px rgba(59, 130, 246, 0.15);
 }
 
 .floating-quick-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+  stroke: white;
 }
 
 .floating-quick-menu {
