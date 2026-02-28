@@ -151,14 +151,6 @@ function ChatBot() {
             ))}
           </div>
 
-          <div className="chatbot-contact-status">
-            {isOfficeTime() ? (
-              <span className="status-online">● Office Open - Call {CONTACT_NUMBER}</span>
-            ) : (
-              <span className="status-offline">○ Office Closed - Mon-Sat 9AM-6PM</span>
-            )}
-          </div>
-
           <form className="chatbot-input" onSubmit={handleSend}>
             <input
               type="text"
