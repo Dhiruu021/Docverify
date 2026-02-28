@@ -154,25 +154,25 @@ function UserDashboard() {
             <h2>Featured</h2>
             <div className="ads-grid">
               {ads.map((ad) => (
-                <article key={ad._id} className="ad-card">
+                <article
+                  key={ad._id}
+                  className="ad-card"
+                  onClick={() => ad.link && window.open(ad.link, "_blank")}
+                  style={{ cursor: ad.link ? "pointer" : "default" }}
+                >
                   <div className="ad-image">
                     <img
                       src={ad.image.startsWith("http") ? ad.image : `${import.meta.env.VITE_API_URL?.replace("/api", "")}/${ad.image}`}
                       alt={ad.title}
                     />
+                    {ad.link && (
+                      <div className="ad-overlay">
+                        <span>Click to Visit</span>
+                      </div>
+                    )}
                   </div>
                   <div className="ad-content">
                     <h3>{ad.title}</h3>
-                    {ad.link && (
-                      <a
-                        href={ad.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn-visit"
-                      >
-                        Visit
-                      </a>
-                    )}
                   </div>
                 </article>
               ))}
