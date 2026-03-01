@@ -54,6 +54,20 @@ function AdminMainDashboard() {
     loadAds();
   }, []);
 
+  const role = localStorage.getItem("role");
+  const name = localStorage.getItem("name") || "Admin";
+
+  let welcomeMessage = "Admin Dashboard";
+  let welcomeSubtext = "Manage system settings and monitor activities";
+  
+  if (role === "superadmin") {
+    welcomeMessage = `Power of ${name}`;
+    welcomeSubtext = "Manage system settings and monitor activities";
+  } else if (role === "verifieradmin") {
+    welcomeMessage = `Welcome ${name}`;
+    welcomeSubtext = "Verify documents and manage users";
+  }
+
   const addAd = async (e) => {
     e.preventDefault();
 
@@ -115,8 +129,8 @@ function AdminMainDashboard() {
       <div className="dashboard-container">
         <header className="dashboard-header">
           <div className="header-content">
-            <h1>Admin Dashboard</h1>
-            <p>Manage system settings and monitor activities</p>
+            <h1>{welcomeMessage}</h1>
+            <p>{welcomeSubtext}</p>
           </div>
           <div className="ai-control">
             <div className="ai-status-badge">
@@ -132,12 +146,12 @@ function AdminMainDashboard() {
                 <span className="spinner-small"></span>
               ) : aiMode ? (
                 <>
-                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M13 7h-2v4L8.5 9.5 7 11l4.5 4.5L9 17h2v-4l2.5 1.5L15 13l-4.5-4.5L13 7z"/></svg>
                   Disable AI
                 </>
               ) : (
                 <>
-                  <svg viewBox="0 0 24 24"><path d="M13 7h-2v4L8.5 9.5 7 11l4.5 4.5L9 17h2v-4l2.5 1.5L15 13l-4.5-4.5L13 7z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                   Enable AI
                 </>
               )}
@@ -157,7 +171,7 @@ function AdminMainDashboard() {
           </div>
           <div className="stat-card">
             <div className="stat-icon approved">
-              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 14.17l7.59-7.59L19 8l-9 9z"/></svg>
             </div>
             <div className="stat-details">
               <span className="stat-value">{stats.approved}</span>
