@@ -11,7 +11,7 @@ function UserDashboard() {
 
   useEffect(() => {
     const name = localStorage.getItem("name");
-    if (name) setUserName(name);
+    if (name) setUserName(`Mr. ${name}`);
   }, []);
 
   useEffect(() => {
@@ -80,7 +80,8 @@ function UserDashboard() {
       <div className="dashboard-content">
         <header className="dashboard-header">
           <div className="welcome-section">
-            <h1>Welcome Back, {userName || "User"}! 👋</h1>
+            <h1>Welcome Back!</h1>
+            <p>{userName || "User"}</p>
             <p>Manage your documents and track verification status</p>
           </div>
         </header>

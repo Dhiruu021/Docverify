@@ -56,16 +56,17 @@ function AdminMainDashboard() {
 
   const role = localStorage.getItem("role");
   const name = localStorage.getItem("name") || "Admin";
+  const formattedName = `Mr. ${name}`;
 
   let welcomeMessage = "Admin Dashboard";
   let welcomeSubtext = "Manage system settings and monitor activities";
   
   if (role === "superadmin") {
-    welcomeMessage = `Power of DocVerify ${name}`;
-    welcomeSubtext = "Manage system settings and monitor activities";
+    welcomeMessage = `Power of DocVerify`;
+    welcomeSubtext = formattedName;
   } else if (role === "verifieradmin") {
-    welcomeMessage = `Verifier Access: Welcome ${name}`;
-    welcomeSubtext = "Verify documents and manage users";
+    welcomeMessage = `Verification Officer Dashboard`;
+    welcomeSubtext = formattedName;
   }
 
   const addAd = async (e) => {
