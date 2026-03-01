@@ -61,10 +61,10 @@ function AdminMainDashboard() {
   let welcomeSubtext = "Manage system settings and monitor activities";
   
   if (role === "superadmin") {
-    welcomeMessage = `Power of ${name}`;
+    welcomeMessage = `Power of DocVerify ${name}`;
     welcomeSubtext = "Manage system settings and monitor activities";
   } else if (role === "verifieradmin") {
-    welcomeMessage = `Welcome ${name}`;
+    welcomeMessage = `Verifier Access: Welcome ${name}`;
     welcomeSubtext = "Verify documents and manage users";
   }
 
