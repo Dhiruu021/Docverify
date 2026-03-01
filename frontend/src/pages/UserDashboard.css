@@ -34,6 +34,18 @@
   color: #6b7280;
 }
 
+.user-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0.5rem 0;
+  text-transform: capitalize;
+}
+
+.dark .user-name {
+  color: #f1f5f9;
+}
+
 .dark .welcome-section p {
   color: #94a3b8;
 }

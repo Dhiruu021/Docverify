@@ -131,7 +131,7 @@ function AdminMainDashboard() {
         <header className="dashboard-header">
           <div className="header-content">
             <h1>{welcomeMessage}</h1>
-            <p>{welcomeSubtext}</p>
+            <p className="user-name">{welcomeSubtext}</p>
           </div>
           <div className="ai-control">
             <div className="ai-status-badge">

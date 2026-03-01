@@ -81,7 +81,7 @@ function UserDashboard() {
         <header className="dashboard-header">
           <div className="welcome-section">
             <h1>Welcome Back!</h1>
-            <p>{userName || "User"}</p>
+            <p className="user-name">{userName || "User"}</p>
             <p>Manage your documents and track verification status</p>
           </div>
         </header>
