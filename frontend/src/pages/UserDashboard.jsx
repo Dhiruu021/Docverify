@@ -11,7 +11,11 @@ function UserDashboard() {
 
   useEffect(() => {
     const name = localStorage.getItem("name");
-    if (name) setUserName(`Mr. ${name}`);
+    const gender = localStorage.getItem("gender");
+    if (name) {
+      const prefix = gender === "female" ? "Ms." : "Mr.";
+      setUserName(`${prefix} ${name}`);
+    }
   }, []);
 
   useEffect(() => {

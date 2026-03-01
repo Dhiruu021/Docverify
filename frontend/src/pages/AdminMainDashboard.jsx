@@ -56,7 +56,9 @@ function AdminMainDashboard() {
 
   const role = localStorage.getItem("role");
   const name = localStorage.getItem("name") || "Admin";
-  const formattedName = `Mr. ${name}`;
+  const gender = localStorage.getItem("gender");
+  const prefix = gender === "female" ? "Ms." : "Mr.";
+  const formattedName = `${prefix} ${name}`;
 
   let welcomeMessage = "Admin Dashboard";
   let welcomeSubtext = "Manage system settings and monitor activities";
