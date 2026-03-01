@@ -29,6 +29,7 @@ function Login() {
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("userId", res.data.userId);
       localStorage.setItem("name", res.data.name);
+      localStorage.setItem("gender", res.data.gender);
 
       if (res.data.role === "superadmin") {
         navigate("/admin");
