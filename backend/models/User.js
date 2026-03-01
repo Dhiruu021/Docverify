@@ -33,6 +33,12 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
 
+  gender: {
+    type: String,
+    enum: ["male", "female"],
+    default: "male",
+  },
+
   resetToken: {
     type: String,
     default: null,

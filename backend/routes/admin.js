@@ -38,7 +38,7 @@ router.get("/users", protect, isSuperAdmin, async (req, res) => {
 // Create new user (Super Admin only)
 router.post("/users", protect, isSuperAdmin, async (req, res) => {
   try {
-    const { name, email, password, phone, role } = req.body;
+    const { name, email, password, phone, role, gender } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email and password are required" });
@@ -57,6 +57,7 @@ router.post("/users", protect, isSuperAdmin, async (req, res) => {
       password: hashedPassword,
       role: role || "user",
       phone: phone || "",
+      gender: gender || "male",
     });
 
     res.status(201).json({ message: "User created successfully", userId: user._id });

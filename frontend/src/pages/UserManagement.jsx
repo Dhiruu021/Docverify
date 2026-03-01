@@ -12,6 +12,7 @@ function UserManagement() {
     password: "",
     phone: "",
     role: "user",
+    gender: "male",
   });
 
   const fetchUsers = async () => {
@@ -40,6 +41,7 @@ function UserManagement() {
         password: "",
         phone: "",
         role: "user",
+        gender: "male",
       });
       fetchUsers();
     } catch (err) {
@@ -194,15 +196,28 @@ function UserManagement() {
                   </select>
                 </div>
               </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  placeholder="Create a password"
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    placeholder="Create a password"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Gender</label>
+                  <select
+                    value={formData.gender}
+                    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                    required
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
               </div>
               <div className="modal-actions">
                 <button type="button" className="btn-secondary" onClick={() => setShowModal(false)}>
