@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./ChatBot.css";
 
-const CONTACT_NUMBER = "7800330409";
+const CONTACT_NUMBER = "+91 7800330409";
 const OFFICE_HOURS = { start: 9, end: 18 }; // 9AM - 6PM
 
 const isOfficeTime = () => {

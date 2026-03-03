@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../services/api";
 import "./AdminVerifier.css";
 
-function AdminPending() {
+function AdminVerifier() {
   const [docs, setDocs] = useState([]);
 
   const fetchDocs = async () => {
@@ -126,4 +126,4 @@ function AdminPending() {
   );
 }
 
-export default AdminPending;
+export default AdminVerifier;
