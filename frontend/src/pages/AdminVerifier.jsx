@@ -44,7 +44,8 @@ function AdminVerifier() {
       <div className="verifier-container">
         <header className="verifier-header">
           <div className="header-content">
-            <h1>Welcome Back!</h1>
+             <h1>Welcome Back!</h1>
+            <h1>Chief Administrator</h1>
             <p className="verifier-name">{verifierName || "Verifier"}</p>
             <p>Review and approve pending document submissions</p>
           </div>
