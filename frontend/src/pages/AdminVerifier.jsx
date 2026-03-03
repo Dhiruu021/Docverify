@@ -4,6 +4,16 @@ import "./AdminVerifier.css";
 
 function AdminVerifier() {
   const [docs, setDocs] = useState([]);
+  const [verifierName, setVerifierName] = useState("");
+
+  useEffect(() => {
+    const name = localStorage.getItem("name");
+    const gender = localStorage.getItem("gender");
+    if (name) {
+      const prefix = gender === "female" ? "Ms." : "Mr.";
+      setVerifierName(`${prefix} ${name}`);
+    }
+  }, []);
 
   const fetchDocs = async () => {
     try {
@@ -34,13 +44,11 @@ function AdminVerifier() {
       <div className="verifier-container">
         <header className="verifier-header">
           <div className="header-content">
-            <h1>Document Verification</h1>
+            <h1>Welcome Back!</h1>
+            <p className="verifier-name">{verifierName || "Verifier"}</p>
             <p>Review and approve pending document submissions</p>
           </div>
-          <button className="btn-refresh" onClick={fetchDocs}>
-            <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-            Refresh
-          </button>
+          
         </header>
 
         <div className="stats-row">
