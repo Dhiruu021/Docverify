@@ -64,11 +64,11 @@ function AdminMainDashboard() {
   let welcomeSubtext = "Manage system settings and monitor activities";
   
   if (role === "superadmin") {
-    welcomeMessage = `Power of DocVerify`;
-    welcomeSubtext = formattedName;
+    welcomeMessage = `Super Power of DocVerify`;
+    welcomeSubtext = `${formattedName} | Chief Administrator`;
   } else if (role === "verifieradmin") {
-    welcomeMessage = `Verification Officer Dashboard`;
-    welcomeSubtext = formattedName;
+    welcomeMessage = `Verification Command Center`;
+    welcomeSubtext = `${formattedName} | Verification Officer`;
   }
 
   const addAd = async (e) => {
