@@ -16,10 +16,14 @@ const autoVerifyByAI = (docType, filePath) => {
 /* Upload Document (User)*/
 const uploadDocument = async (req, res) => {
   try {
-    const { docType, userId } = req.body;
+    const { docType, userId, reason } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ message: "File is required" });
+    }
+
+    if (!reason || reason.trim().split(/\s+/).length < 20) {
+      return res.status(400).json({ message: "Reason must be at least 20 words" });
     }
 
     let status = "pending";
@@ -35,6 +39,7 @@ const uploadDocument = async (req, res) => {
       filePath: req.file.path,
       cloudinaryUrl: req.file.path,
       status,
+      reason: reason.trim(),
     });
 
     res.status(201).json({

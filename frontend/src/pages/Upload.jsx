@@ -6,17 +6,26 @@ import "./Upload.css";
 function Upload() {
   const [docType, setDocType] = useState("");
   const [file, setFile] = useState(null);
+  const [reason, setReason] = useState("");
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const wordCount = reason.trim().split(/\s+/).length;
+    if (wordCount < 20) {
+      alert(`Reason must be at least 20 words. Current: ${wordCount} words`);
+      return;
+    }
+
     setUploading(true);
 
     const formData = new FormData();
     formData.append("docType", docType);
     formData.append("document", file);
     formData.append("userId", localStorage.getItem("userId"));
+    formData.append("reason", reason);
 
     try {
       await API.post("/docs/upload", formData);
@@ -57,7 +66,23 @@ function Upload() {
             {file && <span className="file-name">{file.name}</span>}
           </div>
 
-          <button type="submit" disabled={uploading} className="btn-upload">
+          <div className="form-group">
+            <label>Reason for Upload (Minimum 20 words)</label>
+            <textarea
+              placeholder="Explain why you are uploading this document. Please provide detailed information in at least 20 words..."
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              rows="5"
+              required
+            />
+            {reason && (
+              <span className={`word-count ${reason.trim().split(/\s+/).length >= 20 ? 'valid' : 'invalid'}`}>
+                Words: {reason.trim().split(/\s+/).length} / 20
+              </span>
+            )}
+          </div>
+
+          <button type="submit" disabled={uploading || reason.trim().split(/\s+/).length < 20} className="btn-upload">
             {uploading ? "Uploading..." : "Upload Document"}
           </button>
         </form>

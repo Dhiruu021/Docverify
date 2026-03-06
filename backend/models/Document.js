@@ -27,6 +27,12 @@ const documentSchema = new mongoose.Schema(
       enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
+
+    reason: {
+      type: String,
+      required: true,
+      minlength: [20, "Reason must be at least 20 words"],
+    },
   },
   {
     timestamps: true, 

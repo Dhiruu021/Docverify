@@ -74,6 +74,38 @@
   font-size: 0.9rem;
 }
 
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.word-count {
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.word-count.valid {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.word-count.invalid {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
 .file-name {
   font-size: 0.85rem;
   color: #6b7280;
@@ -167,6 +199,30 @@
 
 .dark .upload-guidelines-box li strong {
   color: #f1f5f9;
+}
+
+.dark .form-group label {
+  color: #cbd5e1;
+}
+
+.dark .form-group textarea {
+  background: #1e293b;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark .form-group textarea:focus {
+  border-color: #3b82f6;
+}
+
+.dark .word-count.valid {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+
+.dark .word-count.invalid {
+  background: #7f1d1d;
+  color: #fca5a5;
 }
 
 @media (max-width: 640px) {
